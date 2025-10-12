@@ -2,6 +2,7 @@ import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/neon-http';
 import { neon } from "@neondatabase/serverless";
 
+//this is the drizzle instance that will be used to connect
 const sql = (() => {
 	const url = process.env.DATABASE_URL;
 	if (!url) {
