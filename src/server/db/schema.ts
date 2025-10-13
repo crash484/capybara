@@ -7,8 +7,8 @@ export const categories = pgTable("categories", {
   name: varchar("name", { length: 100 }).notNull(),
   description: text("description"),
   slug: varchar("slug", { length: 150 }).notNull().unique(),
-  createdAt: timestamp("created_at").default(sql`NOW()`),
-  updatedAt: timestamp("updated_at").default(sql`NOW()`),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
 export const posts = pgTable("posts", {
@@ -17,8 +17,8 @@ export const posts = pgTable("posts", {
   content: text("content").notNull(),
   slug: varchar("slug", { length: 200 }).notNull().unique(),
   published: boolean("published").default(false).notNull(),
-  createdAt: timestamp("created_at").default(sql`NOW()`),
-  updatedAt: timestamp("updated_at").default(sql`NOW()`),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
 
