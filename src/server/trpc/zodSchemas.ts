@@ -1,8 +1,8 @@
-import { title } from "process";
 import { z } from "zod";
 
 export const createCategorySchema = z.object({
-    name: z.string().min(2," category must atleast be 2 characters long")
+    name: z.string().min(2," category must atleast be 2 characters long"),
+    description: z.string().optional(),
 });
 
 export const updateCategorySchema = z.object({

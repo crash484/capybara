@@ -4,6 +4,7 @@ import {posts, postCategories} from "@/server/db/schema"
 import { eq } from "drizzle-orm"
 import slugify from "slugify"
 import { createPostSchema,updatePostSchema,deletePostSchema } from "../zodSchemas"
+import z from "zod"
 
 export const postRouter = router({
     getAll: publicProcedure.query(async()=> {
@@ -13,7 +14,7 @@ export const postRouter = router({
     //on frontend say if null then say postnotfound
     getById: publicProcedure.input(deletePostSchema).query(async ({input}) =>{
         const [post] = await db.select().from(posts).where(eq(posts.id,input.id));
-        return post || {message:"no posts found"}
+        return post || null
     }),
 
     //for creating new post
@@ -60,5 +61,22 @@ export const postRouter = router({
     delete: publicProcedure.input(deletePostSchema).mutation(async({input}) =>{
         const reqq = await db.delete(posts).where(eq(posts.id,input.id));
         return reqq ?{success:true}:{success:false};
+    }),
+
+    //getting posts by categoryId
+    getByCategoryId: publicProcedure.input(z.object({categoryId: z.number() })).query(async ({input}) =>{
+        const result = await db.select({
+            id:posts.id,
+            title:posts.title,
+            content:posts.title,
+            slug:posts.slug,
+            published: posts.published,
+            createdAt: posts.createdAt
+        })
+        .from(posts)
+        .innerJoin(postCategories, eq(posts.id, postCategories.postId))
+        .where(eq(postCategories.categoryId, input.categoryId));
+
+        return result;
     }),
 })
