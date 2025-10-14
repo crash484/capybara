@@ -12,11 +12,11 @@ export default function Home() {
   return (
     <div className="font-sans grid min-h-screen p-8 gap-16 sm:p-20">
       <Toaster position="top-right"/>
-      <div className="top sticky flex justify-between h-20">
-        <div className="text-xl p-3 hover:bg-violet-100 duration-340 ease-in-out h-fit w-fit rounded-2xl  text-wrap">
+      <div className="top sticky flex justify-between">
+        <div className="text-xl p-3 hover:bg-violet-100 dark:hover:bg-gray-800 duration-340 ease-in-out h-fit w-fit rounded-lg">
         heyyyyyyyyyyy!
         </div>
-        <div className="rounded-lg text-xl p-3 hover:bg-50 duration-340 ease-in-out h-fit">
+        <div className="rounded-lg text-xl p-3 hover:bg-violet-100 dark:hover:bg-gray-800 duration-340 ease-in-out h-fit">
           features
         </div>
         <div>
