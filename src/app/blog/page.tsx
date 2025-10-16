@@ -47,15 +47,16 @@ export default function Home() {
       {/* Posts Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {posts?.map((post) => (
-          <div
+          <a
             key={post.id}
+            href={`/post/${post.slug}`}
             className="border rounded-xl p-4 shadow-sm hover:shadow-md transition"
           >
             <h2 className="font-semibold text-lg">{post.title}</h2>
             <p className="text-sm text-muted-foreground mt-2 line-clamp-3">
               {post.content}
             </p>
-          </div>
+          </a>
         ))}
       </div>
     </div>
