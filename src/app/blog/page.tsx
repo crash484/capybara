@@ -21,7 +21,7 @@ export default function Home() {
 
       setCategories(cats.result.data)
       setPosts(psts.result.data)
-
+      console.log(cats.result.data)
       setLoading(false);
     }
 
@@ -60,6 +60,9 @@ export default function Home() {
           </a>
         ))}
       </div>
+      <a href="/post/new" className="rounded-lg border-2 p-3 hover:bg-violet-100 dark:hover:bg-gray-800">
+      Create  a new post
+      </a>
     </div>
   )
 }
