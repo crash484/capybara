@@ -1,31 +1,19 @@
 "use client"
 
 import { Toaster,toast } from "react-hot-toast"
-import { trpc } from "../lib/utils/trpc";
-import Header from "./components/header"
+
 
 export default function Home() {
 
-  {/*gonna add the frontend here only rn */}
-  const {data: categories, isLoading,error} = trpc.category.getAll.useQuery();
 
-  if(isLoading) return <p>Loading...</p>;
-  if(error) return <p> error in loading categories</p>
-  {/* move this all frontend code into a card so it looks better */}
+
   return (
     <div className="font-sans grid min-h-screen text-black dark:text-white p-8 gap-16 sm:p-20">
       <Toaster position="top-right"/>
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-       <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">Categories</h1>
-      <ul className="space-y-2">
-        {categories?.map((cat) => (
-          <li key={cat.id} className="p-2 bg-gray-100 dark:bg-gray-800 rounded-md">
-            {cat.name}
-          </li>
-        ))}
-      </ul>
-    </div>
+        <ul>
+          
+        </ul>
       </main>
       <footer className="row-start-3 flex gap-[24px] duration flex-wrap items-center justify-center">
         created By Shashwat Jain 🥰

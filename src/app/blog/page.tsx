@@ -35,12 +35,13 @@ export default function Home() {
       {/* Categories Section */}
       <div className="flex flex-wrap gap-3">
         {categories?.map((cat) => (
-          <div
+          <a
             key={cat.id}
             className="px-4 py-2 border rounded-lg cursor-pointer hover:bg-muted transition"
+            href={`/category/${cat.id}`}
           >
             {cat.name}
-          </div>
+          </a>
         ))}
       </div>
 
