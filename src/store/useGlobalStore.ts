@@ -17,8 +17,8 @@ interface Post{
     id:number
     title:string
     content:string
+    slug:string
     categoryId: number
-
 }
 
 interface AppState{
@@ -33,6 +33,8 @@ interface AppState{
     addPost: (post: Post) => void
     updatePost:(id : number, updated: Partial<Post>) => void
     deletePost: (id: number)=> void
+    selectedCategoryId: number|null
+    setSelectedCategoryId: (id:number | null) => void
 }
 
 export const useAppStore = create<AppState>((set)=>({
@@ -58,7 +60,9 @@ export const useAppStore = create<AppState>((set)=>({
     deletePost: (id) =>
         set((state) => ({
             posts: state.posts.filter((p) => p.id !== id),
-                }))
+                })),
+    selectedCategoryId:null,
+    setSelectedCategoryId:(id)=> set({selectedCategoryId:id}),
 }))
 
 export const useGlobalStore = create<GlobalState>((set)=>({

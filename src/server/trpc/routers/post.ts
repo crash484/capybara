@@ -79,4 +79,13 @@ export const postRouter = router({
 
         return result;
     }),
+
+    getBySlug: publicProcedure
+        .input(z.object({ slug: z.string() }))
+        .query(async ({ input }) => {
+            return await db
+            .select()
+            .from(posts)
+            .where(eq(posts.slug, input.slug))
+    }),
 })

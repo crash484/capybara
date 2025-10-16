@@ -12,7 +12,6 @@ export default function Home() {
 
       const cats = await catRes.json()
       const psts = await postRes.json()
-      //console.log(cats.result.data);
 
       setCategories(cats.result.data)
       setPosts(psts.result.data)
