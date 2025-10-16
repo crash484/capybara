@@ -1,25 +1,35 @@
 "use client"
 import { useEffect } from "react"
-import { useAppStore } from "@/store/useGlobalStore"
+import { useAppStore,useGlobalStore } from "@/store/useGlobalStore"
+
 
 export default function Home() {
   const { categories, setCategories, posts, setPosts } = useAppStore()
+  const { loading,setLoading,error,setError} = useGlobalStore();
 
   useEffect(() => {
     const fetchData = async () => {
       const catRes = await fetch("/api/trpc/category.getAll")
       const postRes = await fetch("/api/trpc/post.getAll")
 
+      if(!catRes || !postRes) setError(true)
+
+      setLoading(true);
+
       const cats = await catRes.json()
       const psts = await postRes.json()
 
       setCategories(cats.result.data)
       setPosts(psts.result.data)
+
+      setLoading(false);
     }
 
     fetchData()
   }, [])
 
+  if(loading) return <p> loading...</p>
+  if(error) return <p> error in loading pls try again</p>
   return (
     <div className="p-8 space-y-6">
       {/* Categories Section */}

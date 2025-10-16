@@ -1,9 +1,16 @@
 import { create } from "zustand";
 import { timestamp } from 'drizzle-orm/pg-core';
+import { error } from "console";
 
 interface GlobalState {
     user: string | null
     setUser:(user: string | null) => void;
+
+    loading:boolean
+    setLoading:(loading: boolean) => void
+
+    error: boolean 
+    setError: (error: boolean) => void
 }
 
 interface Category{
@@ -67,5 +74,9 @@ export const useAppStore = create<AppState>((set)=>({
 
 export const useGlobalStore = create<GlobalState>((set)=>({
     user:null,
-    setUser:(user)=> set({user})
+    setUser:(user)=> set({user}),
+    loading:true,
+    setLoading:(loading)=> set({loading}),
+    error:false,
+    setError:(error)=> set({error})
 }));
