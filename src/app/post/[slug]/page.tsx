@@ -1,7 +1,11 @@
 import PostClient from "./PostClient"
 
-export default function PostPage({ params }: { params: { slug: string } }) {
-  const slug = decodeURIComponent(params.slug)
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+
   return <PostClient slug={slug} />
 }
-
