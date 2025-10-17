@@ -1,6 +1,7 @@
 "use client"
 import { useEffect } from "react"
 import { useAppStore,useGlobalStore } from "@/store/useGlobalStore"
+import { categories } from '../../server/db/schema';
 
 
 export default function Home() {
@@ -60,8 +61,11 @@ export default function Home() {
           </a>
         ))}
       </div>
-      <a href="/post/new" className="rounded-lg border-2 p-3 hover:bg-violet-100 dark:hover:bg-gray-800">
+      <a href="/post/new" className="rounded-lg border-2 p-3 m-1 hover:bg-violet-100 dark:hover:bg-gray-800">
       Create  a new post
+      </a>
+      <a href="/category/CategoryManager" className="rounded-lg m-1 border-2 p-3 hover:bg-violet-100 dark:hover:bg-gray-800">
+      Edit ur categories
       </a>
     </div>
   )

@@ -58,3 +58,28 @@ Notes:
 ## Troubleshooting
 
 - TypeScript complains about `process.env.DATABASE_URL` possibly being `undefined`: ensure your `.env` file is present and `DATABASE_URL` is set, or add a runtime check in `drizzle.config.ts` and other places that read the env var.
+
+## Seeding the database
+
+This repo includes a seed script at `scripts/seed.ts` which will:
+
+- Clear the existing `posts`, `categories`, and `post_categories` tables (safe for local dev)
+- Insert a small set of example categories and posts
+
+Prerequisites:
+
+- Ensure `DATABASE_URL` in your `.env` points to a local or test Postgres database and that the DB is reachable.
+- Install dependencies (`pnpm install`).
+
+Run the seed script:
+
+```bash
+# using tsx (recommended, already in devDependencies)
+pnpm tsx scripts/seed.ts
+
+# or with node if you compiled to JS / have a runner configured
+node ./dist/scripts/seed.js
+```
+
+If the script exits with an error, inspect the message and confirm `DATABASE_URL` is correct and the database is reachable. The script will exit with a non-zero code on failure.
+
